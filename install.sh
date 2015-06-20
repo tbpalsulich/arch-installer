@@ -11,12 +11,12 @@ function aursh() {
 	done
 }
 
-xargs -a official-packages sudo pacman -S --noconfirm --needed
+xargs -a packages/official-packages sudo pacman -S --noconfirm --needed
 
 aursh package-query
 aursh yaourt
 
-xargs -a aur-packages sudo yaourt -S --noconfirm --needed
+xargs -a packages/aur-packages sudo yaourt -S --noconfirm --needed
 
 git clone git@github.com:tpalsulich/dotfiles.git ~/.dotfiles
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
