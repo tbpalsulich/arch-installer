@@ -41,7 +41,7 @@ echo
 
 while [[ -z "$timezone" || ! -f "/usr/share/zoneinfo/$timezone" ]]; do
     echo "Enter a timezone (e.g. America/Los_Angeles):"
-    read -s timezone
+    read timezone
 done
 
 pacstrap /mnt base base-devel btrfs-progs
