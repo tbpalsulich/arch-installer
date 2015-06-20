@@ -1,4 +1,4 @@
 #!/bin/sh
 
 pacman -Qqn > official-packages
-pacman -Qqm | grep -v "package-query" | grep -v "yaourt" > aur-packages
+pacman -Qqm | egrep -v "(package-query|yaourt)" > aur-packages
