@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # https://wiki.archlinux.org/index.php/Aur.sh
 function aursh() {
 	d=${BUILDDIR:-$PWD}
@@ -11,12 +13,15 @@ function aursh() {
 	done
 }
 
-xargs -a packages/official-packages sudo pacman -S --noconfirm --needed
+OFFICIAL_PAC=`curl -s https://raw.githubusercontent.com/tpalsulich/arch-installer/master/packages/official-packages`
+AUR_PAC=`curl -s https://raw.githubusercontent.com/tpalsulich/arch-installer/master/packages/aur-packages`
+
+echo sudo pacman -S --noconfirm --needed $OFFICIAL_PAC
 
 aursh package-query
 aursh yaourt
 
-xargs -a packages/aur-packages sudo yaourt -S --noconfirm --needed
+echo sudo yaourt -S --noconfirm --needed $AUR_PAC
 
 git clone git@github.com:tpalsulich/dotfiles.git ~/.dotfiles
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
